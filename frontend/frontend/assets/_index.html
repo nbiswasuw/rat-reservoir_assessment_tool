@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<!-- saved from url=(0019)http://46.16.74.57/ -->
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>
+         IIWQ Waterquality App
+      </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="./normalize.css">
+      <link rel="stylesheet" type="text/css" href="./jquery-ui-1.10.4.custom.min.css">
+      <link rel="stylesheet" type="text/css" href="./eomap.css">
+      <script async="" src="./analytics.js.download"></script>
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         ga('create', 'UA-107876161-4',  '46.16.74.57');
+         ga('set', 'anonymizeIp', true);
+         ga('send', 'pageview');
+           
+      </script>
+      <script src="./jquery-1.10.2.js.download"></script>
+      <script src="./jquery-ui-1.10.4.custom.min.js.download"></script>
+      <script src="./jquery.cookie.js.download"></script>
+      <script src="./time-format.js.download"></script>
+      <script src="./OpenLayers.js.download"></script>
+      <script src="./Chart.js.download"></script>
+      <script src="./math.js.download"></script>
+      <script src="./ga.min.js.download"></script>
+      <script src="./var.min.js.download"></script>
+      <script src="./eomap.min.js.download"></script>
+      <link rel="stylesheet" type="text/css" href="./style.css">
+   </head>
+   <body style="">
+      <!-- MAP -->
+      <div id="map" class="olMap">
+         <div id="OpenLayers_Map_6_OpenLayers_ViewPort" class="olMapViewport olControlDragPanActive olControlZoomBoxActive olControlPinchZoomActive olControlNavigationActive olControlMousePositionActive olControlDrawFeatureActive olControlSelectFeatureActive" style="position: relative; overflow: hidden; width: 100%; height: 100%;">
+            <div id="OpenLayers_Map_6_OpenLayers_Container" style="position: absolute; z-index: 749; left: 0px; top: 0px;">
+               <div id="OpenLayers_Layer_Bing_25" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 100;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h122.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 889px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h033.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 633px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h120.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 889px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h300.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 889px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h123.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1145px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h031.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 633px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h211.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 633px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h121.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1145px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h301.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1145px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h032.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 377px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h102.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 889px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h302.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 889px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h030.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 377px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h210.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 377px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h013.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 633px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h213.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 633px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h132.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1401px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h103.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1145px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h303.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1145px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h130.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1401px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h310.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1401px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h012.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 377px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h212.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 377px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h023.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 121px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h021.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 121px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h201.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 121px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h112.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1401px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h312.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1401px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h133.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1657px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h131.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1657px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h311.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1657px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h003.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 121px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h203.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 121px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h022.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: -135px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h113.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1657px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h313.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1657px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h020.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: -135px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h200.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: -135px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h022.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1913px; top: 322px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h002.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: -135px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h202.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: -135px; top: 834px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h020.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1913px; top: 66px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h200.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1913px; top: 578px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h002.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1913px; top: -190px; width: 256px; height: 256px;">
+                  <img class="olTileImage" crossorigin="anonymous" src="./h202.jpeg" style="visibility: inherit; opacity: 1; position: absolute; left: 1913px; top: 834px; width: 256px; height: 256px;">
+               </div>
+               <div id="OpenLayers_Layer_Bing_27" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 105; display: none;">
+               </div>
+               <div id="OpenLayers_Layer_Bing_23" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 110; display: none;">
+               </div>
+               <div id="OpenLayers_Layer_OSM_21" dir="ltr" class="olLayerDiv olLayerGrid" style="position: absolute; width: 100%; height: 100%; z-index: 115; display: none;">
+               </div>
+               <div id="OpenLayers_Layer_Vector_40" dir="ltr" class="olLayerDiv" style="position: absolute; width: 100%; height: 100%; z-index: 365; left: 0px; top: 0px;">
+                  <svg id="OpenLayers_Layer_Vector_40_svgRoot" width="1920" height="900" viewBox="0 0 1920 900" style="display: block;">
+                     <g id="OpenLayers_Layer_Vector_40_root" transform="translate(2048,0)" style="visibility: visible;">
+                        <g id="OpenLayers_Layer_Vector_40_vroot">
+                           <image id="OpenLayers_Geometry_Point_233" cx="-1620.5937777777665" cy="313.37550361012524" r="1" preserveAspectRatio="none" x="-1635" y="270" width="28" height="45" xlink:href="pic/station.png" style="opacity: 1" fill="#000000" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></image>
+                        </g>
+                        <g id="OpenLayers_Layer_Vector_40_troot">
+                        </g>
+                     </g>
+                  </svg>
+               </div>
+               <div id="OpenLayers_Layer_Vector_29" dir="ltr" class="olLayerDiv" style="position: absolute; width: 100%; height: 100%; z-index: 345; left: 0px; top: 0px;">
+                  <svg id="OpenLayers_Layer_Vector_29_svgRoot" width="1920" height="900" viewBox="0 0 1920 900" style="display: block;">
+                     <g id="OpenLayers_Layer_Vector_29_root" transform="translate(2048,0)" style="visibility: visible;">
+                        <g id="OpenLayers_Layer_Vector_29_vroot"></g>
+                        <g id="OpenLayers_Layer_Vector_29_troot">
+                        </g>
+                     </g>
+                  </svg>
+               </div>
+               <div id="OpenLayers_Layer_Vector_47" dir="ltr" class="olLayerDiv" style="position: absolute; width: 100%; height: 100%; z-index: 725; left: 0px; top: 0px;">
+                  <svg id="OpenLayers_Layer_Vector_47_svgRoot" width="1920" height="900" viewBox="0 0 1920 900" style="display: block;">
+                     <g id="OpenLayers_Layer_Vector_47_root" transform="translate(2048,0)" style="visibility: visible;">
+                        <g id="OpenLayers_Layer_Vector_47_vroot">
+                           <polyline id="OpenLayers_Geometry_LineString_190" points="-2183.111111111668,-339.2907591484734,-122.59144500968102,-339.2907591484734,-122.59144500968102,963.3182935894533,-2183.111111111668,963.3182935894533,-2183.111111111668,-339.2907591484734" fill="none" stroke="#00558C" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                        </g>
+                        <g id="OpenLayers_Layer_Vector_47_troot">
+                        </g>
+                     </g>
+                  </svg>
+               </div>
+               <div id="OpenLayers_Layer_Vector_72" dir="ltr" class="olLayerDiv" style="position: absolute; width: 100%; height: 100%; z-index: 355; left: 0px; top: 0px;">
+                  <svg id="OpenLayers_Layer_Vector_72_svgRoot" width="1920" height="900" viewBox="0 0 1920 900" style="display: block;">
+                     <g id="OpenLayers_Layer_Vector_72_root" transform="translate(2048,0)" style="visibility: visible;">
+                        <g id="OpenLayers_Layer_Vector_72_vroot">
+                           <circle id="OpenLayers_Geometry_Point_297" cx="-2026.0000000000098" cy="541.000000000017" r="6" fill="#66cccc" fill-opacity="0.2" stroke="#66cccc" stroke-opacity="1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="none" pointer-events="visiblePainted" cursor="inherit"></circle>
+                        </g>
+                        <g id="OpenLayers_Layer_Vector_72_troot"></g>
+                     </g>
+                  </svg>
+               </div>
+               <div id="OpenLayers_Layer_Image_349" dir="ltr" class="olLayerDiv" style="position: absolute; width: 100%; height: 100%; z-index: 360;">
+                  <img class="olTileImage" src="http://46.16.74.57/geoserver/eomap/wms?SERVICE=WMS&amp;LAYERS=eomap:global_tur_90&amp;TRANSPARENT=true&amp;FORMAT=image/png&amp;VERSION=1.1.1&amp;REQUEST=GetMap&amp;STYLES=log_C1S3_8bit&amp;SRS=EPSG:900913&amp;WIDTH=1920&amp;HEIGHT=949&amp;BBOX=-17393670.434028,-6294020.4227305,20176657.703472,11317070.891723&amp;TIME=1900-01-01T00:00:00.000Z" style="visibility: inherit; opacity: 1; position: absolute; left: 0px; top: 0px; width: 1920px; height: 900px;">
+               </div>
+            </div>
+            <div id="OpenLayers_Control_ArgParser_3" class="olControlArgParser olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1004;"></div>
+            <div id="OpenLayers_Control_LayerSwitcher_63" class="olControlLayerSwitcher olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1006; width: 0px; height: 0px;">
+               <div id="OpenLayers_Control_LayerSwitcher_63_layersDiv" class="layersDiv" style="display: none;">
+                  <div class="baseLbl">Base Layer</div>
+                  <div class="baseLayersDiv"><input id="OpenLayers_Control_LayerSwitcher_63_input_357" name="OpenLayers_Control_LayerSwitcher_63_baseLayers" type="radio" value="Bing Aerial" checked="" class="olButton"><label class="labelSpan olButton" style="vertical-align: bottom;">Bing Aerial</label><br><input id="OpenLayers_Control_LayerSwitcher_63_input_358" name="OpenLayers_Control_LayerSwitcher_63_baseLayers" type="radio" value="Bing Earth" class="olButton"><label class="labelSpan olButton" style="vertical-align: bottom;">Bing Earth</label><br><input id="OpenLayers_Control_LayerSwitcher_63_input_359" name="OpenLayers_Control_LayerSwitcher_63_baseLayers" type="radio" value="Bing Road" class="olButton"><label class="labelSpan olButton" style="vertical-align: bottom;">Bing Road</label><br><input id="OpenLayers_Control_LayerSwitcher_63_input_360" name="OpenLayers_Control_LayerSwitcher_63_baseLayers" type="radio" value="OpenStreetMap" class="olButton"><label class="labelSpan olButton" style="vertical-align: bottom;">OpenStreetMap</label><br></div>
+                  <div class="dataLbl" style="display: none;">Overlays</div>
+                  <div class="dataLayersDiv"></div>
+               </div>
+               <div id="OpenLayers_Control_MaximizeDiv" class="maximizeDiv olButton" style="position: absolute;"><img id="OpenLayers_Control_MaximizeDiv_innerImage" class="olAlphaImg" src="./layer-switcher-maximize.png" style="position: relative;"></div>
+               <div id="OpenLayers_Control_MinimizeDiv" class="minimizeDiv olButton" style="position: absolute; display: none;"><img id="OpenLayers_Control_MinimizeDiv_innerImage" class="olAlphaImg" src="./layer-switcher-minimize.png" style="position: relative;"></div>
+            </div>
+            <div id="OpenLayers_Control_DrawFeature_49" class="olControlDrawFeature olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1007;"></div>
+            <div id="OpenLayers_Control_DrawFeature_55" class="olControlDrawFeature olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1008;"></div>
+            <div id="OpenLayers_Control_SelectFeature_61" class="olControlSelectFeature olControlNoSelect" unselectable="on" style="position: absolute; z-index: 1009;"></div>
+         </div>
+      </div>
+      <div id="legend" class="ui-draggable" style="background-image: url(&quot;/pic/legend_tur_log_C1S3_8bit.png&quot;);"></div>
+      <div id="info_dialog" class="text_dialog" style="display: none;">
+         <div style=" background: url(&#39;/pic/IIWQ_2.png&#39;); background-repeat: no-repeat; background-position: 98% 80%; background-size: auto 60%; height: 100%;">
+            <div style="background: rgba(255,255,255,0.1); height: 100%; ">
+               <div id="chart_header">
+                  <img src="./button_chart_close.png" alt="close" id="dialog_close" class="close_botton">
+                  <div class="clear-fix"></div>
+               </div>
+               <div class="dialog_wrapper">
+                  <p></p>
+                  <p></p>
+                  <!--<p style="color: red; background-color: white"><b>The site is currently experiencing an unusually high volume of website
+                     visits, and may be causing pages to be slow or unresponsive. We expect to provide an update as soon as
+                     possible.</b></p>-->         
+                  <h1>Welcome!</h1>
+                  <p>This is the new World Water Quality Portal by the International Initiative of Water Quality IIWQ, 
+                     UNESCO-IHP International Hydrological Programme.
+                  </p>
+                  <p>The IIWQ Water Quality Portal is a free visualiser of satellite derived water quality information for worldwide lakes and rivers.</p>
+                  <p>A global set of parameters in 90m spatial resolution is provided on a continental base for each of the <a class="icon_regioninfo" id="regioninfo_welcome">UNESCO Regions</a>. 
+                     Access to time series products in 30m spatial resolution is available for pilot regions, one
+                     per continent, covering the year 2016.
+                  </p>
+                  <p>This application allows you to interactively browse water quality products. You can use the features on the right hand side to select your
+                     region of interest, select various water quality parameters, set any desired virtual sampling stations, gather values and time series
+                     information.
+                  </p>
+                  <p>To find more information, please use the Training Materials button.</p>
+                  <!--<p>Welcome to the world's first World Water Quality Portal of the International Initiative of Water Quality IIWQ, UNESCO-IHP International Hydrological Programme.</p>
+                     <p>The IIWQ Water Quality Portal assists with global water quality assessment and capacity buidling.</p>
+                     
+                     <p>It is a free online-portal that allows users to search for satellite derived water quality information for worldwide freshwater resources.</p>
+                     
+                     <p>The portal will be freely accessible from Monday, 22 January 2018.</p>-->
+                  <p style="margin-top: 30px;">      
+                  </p>
+                  <p>
+                     <label>
+                     <input type="checkbox" id="dontshow" class="dontshow_checkbox" value="dontshow"> Don't show this message again.
+                     </label>
+                  </p>
+                  <div class="clear-fix"></div>
+                  <!--<img src="pic/UNESCO_IHP_Clean.png" height="40" alt="project logo"  />-->
+                  <img src="./all_logos_white.png" height="120" alt="project logo">
+                  <p></p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="chart_dialog">
+         <div id="chart_header">
+            <img src="./button_chart_close.png" alt="close" id="chart_close" class="close_botton">        
+            <h1 id="chart_heading"></h1>
+            <div class="clear-fix"></div>
+         </div>
+         <div id="chart_container">
+            <div id="chart_style"></div>
+            <canvas id="eomap_chart"> </canvas>
+         </div>
+         <a class="export_button" id="export_button" style="float:right;" title="Export chart data to .csv">
+         <span>Report</span>
+         </a>
+      </div>
+      <div id="top_panel">
+         <div class="top_panel_left">
+            <!--<img src="pic/UNESCO_IHP_Clean.png" height="40" alt="project logo" class="logo" />-->
+            <img src="./all_logos_white.png" height="80" alt="project logo" class="logo" style="margin: 0px 0 0 0px;">
+            <!--<img src="pic/unesco_logos_only_white.png" height="80" alt="project logo" class="logo" style="margin: 0px 0 0 0px;"/>-->
+         </div>
+         <div class="top_panel_title">
+            <span class="app_title">IIWQ World Water Quality Information and Capacity Building Portal</span>
+            <!-- <img src="pic/IIWQ_Klein.png" height="70%" alt="project logo" align="top" style="margin: 9px 0 0 8px;" /> -->
+         </div>
+         <!-- <div class="current_date">
+            <span class="current_date_param"></span>
+            </div> -->
+         <div class="action_buttons">
+            <div class="top_panel_right">
+               <img src="./icon_help.png" alt="help" id="help" class="top_menu_icon" title="Information and training materials">
+            </div>
+            <div class="top_panel_right">
+               <img src="./icon_zoom_out.png" alt="zoom out" id="zoom_out" class="top_menu_icon">
+            </div>
+            <div class="top_panel_right">
+               <img src="./icon_zoom_in.png" alt="zoom in" id="zoom_in" class="top_menu_icon">
+            </div>
+            <div class="top_panel_right">
+               <img src="./icon_station_top_sel.png" alt="station" id="station" class="top_menu_icon selected" title="Set a virtual Station on the map">
+               <!-- <img src="/pic/icon_station_top.png" alt="station" id="station" class="top_menu_icon" /> -->
+            </div>
+            <!-- <div class="top_panel_right">
+               <img src="/pic/icon_move.png" alt="move" id="move" class="top_menu_icon" title="Move Map"/>
+               </div> -->
+         </div>
+         <div class="top_menu_label help">
+            <span>Help</span>
+         </div>
+         <div class="top_menu_label zoom_out">
+            <span>Zoom Out</span>
+         </div>
+         <div class="top_menu_label zoom_in">
+            <span>Zoom In</span>
+         </div>
+         <div class="top_menu_label station selected">
+            <span>Station</span>
+         </div>
+         <!--<div class="top_menu_label move">
+            <span>Move</span>
+            </div>-->
+      </div>
+      <div id="state_info" class="state_info" style="display: none;">
+         <div class="state_info_wrapper">
+            <!--<span class="icon_station_black" title="Values from the selected station">Station Values</span>-->
+            <h1 class="icon_station" title="Values from the selected station">Station Values</h1>
+            <div class="sv_wrapper value">
+               <span>Value</span>
+               <span class="sv_value" id="value_m">2.00 FTU</span>
+            </div>
+            <div class="sv_wrapper average">
+               <span>Date</span>
+               <span class="sv_value" id="average_m">17-04-2016 16:05 UTC</span>
+            </div>
+            <div class="chart_wrapper">
+               <span>Time Series Plot</span>
+               <a class="chart_button disabled" id="chart_button_m" title="Data of the currently selected year and the year before is plotted."></a>
+            </div>
+         </div>
+      </div>
+      <div id="hidepanel_button" class="hidebuttons" style="display: block;"></div>
+      <div id="showpanel_button" class="hidebuttons" style="display: none;"></div>
+      <div id="control_panel" class="control_panel" style="display: block;">
+         <div class="panel_main">
+            <p style="color: #99B7CA; font-size: 10px;">
+               <br>
+            </p>
+            <a class="button_info" id="help2">
+               <div class="button_info_label">
+                  <span title="Access to information and capacity building materials">Training materials</span>
+               </div>
+            </a>
+            <div class="cpanel_column">
+               <div class="cpanel_section top">
+                  <!-- <h1 class="icon_region" title="Select a region"><a id="regioninfo">Region ( i )</a></h1>  -->
+                  <h1 class="icon_region" title="Select a region">Region <a class="icon_regioninfo" id="regioninfo" title="Click for region information."> <img src="./icon_regioninfo.png" height="18" width="9"></a></h1>
+                  <div class="select-style">
+                     <select id="area_list" name="Region">
+                        <option value="Mosaic"> World - Mosaic - [90m]</option>
+                        <option value="Caucasus highlands, timeseries">AM/AZ - Caucasus highlands, timeseries - [30m]</option>
+                        <option value="Itaipú/Paraná River, timeseries">AR/BR/PY - Itaipú/Paraná River, timeseries - [30m]</option>
+                        <option value="Mecklenburg Lake Plateau, timeseries">DE - Mecklenburg Lake Plateau, timeseries - [30m]</option>
+                        <option value="Nile &amp; Assuan Reservoir, timeseries">EG/SD - Nile &amp; Assuan Reservoir, timeseries - [30m]</option>
+                        <option value="Mekong delta, timeseries">KH/VN - Mekong delta, timeseries - [30m]</option>
+                        <option value="Florida lakes, timeseries">US - Florida lakes, timeseries - [30m]</option>
+                        <option value="Zambesi River, timeseries">ZM/ZW - Zambesi River, timeseries - [30m]</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="cpanel_section parameter">
+                  <h1 class="icon_parameter" title="Select a water quality parameter">Parameter</h1>
+                  <!--<div class="parameter_group">-->
+                  <div class="parameter_group">
+                     <!--<div class="horizontal_radio2">-->
+                     <label class="button_radio" for="tur">
+                        <input type="radio" name="parameter" value="tur" id="tur">
+                        <div class="button_radio_label">
+                           <span class="radio_label" title="Turbidity caused by scattering of particles is provided in the Formazine Turbidity Unit FTU.">Turbidity</span>						
+                           <div class="clear-fix"></div>
+                        </div>
+                     </label>
+                     <label class="button_radio" for="chl">
+                        <input type="radio" name="parameter" value="chl" checked="checked" id="chl"> 
+                        <div class="button_radio_label">
+                           <span class="radio_label" title="The phytoplankton pigment content is provided as Chlorophyll units in [µg/l].">Chlorophyll-a</span>
+                           <div class="clear-fix"></div>
+                        </div>
+                     </label>
+                     <label class="button_radio" for="hab">
+                        <input type="radio" name="parameter" value="hab" id="hab">
+                        <div class="button_radio_label">
+                           <span class="radio_label" title="The Harmfull Algae Bloom product indicates the appearance of Phycocyanin and Phycoerytrhin in Cyanobacteria.">HAB Indicator</span>
+                           <div class="clear-fix"></div>
+                        </div>
+                     </label>
+                     <label for="sec">
+                        <!-- class="button_radio" -->
+                        <input type="radio" name="parameter" value="sec" id="sec" style="display: none;" disabled="">
+                        <!--<div class="button_radio_label">
+                           <span class="radio_label" title="Unit is meter.">Secchi Depth</span>
+                           <div class="clear-fix"></div>
+                           </div> -->
+                     </label>
+                     <label for="z90">
+                        <!-- class="button_radio" -->
+                        <input type="radio" name="parameter" value="z90" id="z90" style="display: none;">
+                        <!-- <div class="button_radio_label">
+                           <span class="radio_label" title=" Z90 indicates the water depth in meter from which 90% of the reflected light comes from.">Z90</span>
+                           <div class="clear-fix"></div>
+                           </div> -->
+                     </label>
+                     <label for="cdm">
+                        <!-- class="button_radio" -->
+                        <input type="radio" name="parameter" value="cdm" id="cdm" style="display: none;" disabled="">
+                        <!--<div class="button_radio_label">
+                           <span class="radio_label" title="Absorption of colored dissolved organic materials at 440nm; Unit is 1/m.">CDOM</span>
+                           <div class="clear-fix"></div>
+                           </div> -->
+                     </label>
+                     <label class="button_radio" for="abs">
+                        <input type="radio" name="parameter" value="abs" id="abs" style="display: none;">
+                        <div class="button_radio_label">
+                           <span class="radio_label" title="The absorption of organic and anorganic water components is provided as absorption unit in [1/m].">Total Absorption</span>
+                           <div class="clear-fix"></div>
+                        </div>
+                     </label>
+                     <label for="soa">
+                        <input type="radio" name="parameter" value="soa" id="soa" ,="" style="display: none;">
+                        <!--<div class="button_radio_label">
+                           <span class="radio_label" title="The absorption of organic water components is provided as absorption unit in [1/m].">Organic Absorption</span>
+                           <div class="clear-fix"></div>
+                           </div> -->
+                     </label>
+                     <label for="sia">
+                        <!-- class="button_radio" -->
+                        <input type="radio" name="parameter" value="sia" id="sia" style="display: none;" disabled="">
+                        <!-- <div class="button_radio_label">
+                           <span class="radio_label" title="Absorption of inorganic materials at 440nm; Unit is 1/m.">Inorganic Absorption</span>
+                           <div class="clear-fix"></div>
+                           </div> -->
+                     </label>
+                     <label class="button_radio" for="sst">
+                        <input type="radio" name="parameter" value="sst" id="sst" disabled="">
+                        <div class="button_radio_label">
+                           <span class="radio_label" title="The water surface temperature is provided in degree Celsius">Surface Temperature</span>
+                           <div class="clear-fix"></div>
+                        </div>
+                     </label>
+                  </div>
+                  <!--</div>-->
+               </div>
+            </div>
+            <div class="cpanel_column">
+               <div class="cpanel_section">
+                  <h1 class="icon_date" title="Select a time period">Date</h1>
+                  <div class="period_group">
+                     <div class="select-style">
+                        <select id="date_list" name="Datum">
+                           <option value="1900-01-01T00:00:00.000Z">Various Dates.  Mosaic</option>
+                        </select>
+                     </div>
+                     <div class="pn_wrapper">                                             
+                        <a class="next_button" id="prev_button" style="float: left;" title="Previous Date">
+                        <span>&lt;</span></a>        
+                        <a class="next_button" id="next_button" style="float: right;" title="Next Date">
+                        <span>&gt;</span></a>
+                     </div>
+                     <div class="horizontal_radio">
+                        <!--<label class="button_radio left" for="daily">-->
+                        <label for="daily">
+                           <input type="radio" name="date_period" value="daily" id="daily" style="display: none;" disabled="">
+                           <!--<span class="button_radio_label">Daily</span>-->
+                        </label>
+                        <label for="dmean">
+                           <!-- class="button_radio right" -->
+                           <input type="radio" name="date_period" value="dmean" id="dmean" checked="checked" style="display: none;" disabled="">
+                           <!--<span class="button_radio_label" title="Daily Mean for 30m: mean parameter value of all pixels of a whole waterbody based on OpenStreetMap polygons. 
+                              Daily Mean for 500m: pixelwise mean value of all pixels of one day." >D'Mean</span> -->
+                        </label>
+                        <!-- <label class="button_radio left" for="monthly"> -->
+                        <label for="monthly">
+                           <input type="radio" name="date_period" id="monthly" value="monthly" style="display: none;">
+                           <!-- <span class="button_radio_label" title="Seasonal: pixelwise mean of all pixels of one or several months.">Seasonal</span> -->
+                        </label>
+                        <label for="mmean">
+                           <!-- class="button_radio right"-->
+                           <input type="radio" name="date_period" value="mmean" id="mmean" style="display: none;" disabled="">
+                           <!-- <span class="button_radio_label" title="Moving Mean: pixelwise mean of all pixels of the previous 7 days.">M'Mean</span> -->
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="cpanel_column">
+               <div class="cpanel_section station">
+                  <h1 class="icon_station" title="Values from the selected station">Station Values</h1>
+                  <div class="sv_wrapper value">
+                     <span class="sv_label">Value</span>
+                     <span class="sv_value" id="value">2.00 FTU</span>
+                  </div>
+                  <div class="sv_wrapper average">
+                     <span class="sv_label">Date</span>
+                     <span class="sv_value" id="average">17-04-2016 16:05 UTC</span>
+                  </div>
+                  <div class="chart_wrapper">
+                     <span class="chart_label">Time Series Plot</span>
+                     <a class="chart_button disabled" id="chart_button" title="Click here to generate a time series plot."></a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="bottom_panel">
+         <div class="bottom_wrapper">
+            <div class="geo_wrapper">
+               <div id="bottom_panel_scale">
+                  <div class="olControlScaleLineTop" style="visibility: visible; width: 51px;">1000 km</div>
+                  <div class="olControlScaleLineBottom" style="visibility: visible; width: 82px;">1000 mi</div>
+               </div>
+               <div id="bottom_panel_position">137.30469, -42.31315</div>
+            </div>
+            <div id="copyright">			
+               <span>UNESCO 2017 | powered by <a href="http://www.globalwaterquality.org/" target="_blank"><img src="./eomap-logo.png" height="12" align="top" alt="eomap logo"></a> | 
+               <a style="color: #99B7CA" id="disclaimer"><u>Legal Information</u></a></span> 
+            </div>
+            <div id="bottom_panel_attribution">
+               <span class="olBingAttribution aerialwithlabels">
+                  <div><a target="_blank" href="http://www.bing.com/maps/"><img src="./logo_powered_by.png"></a></div>
+                  © 2018 Microsoft Corporation Earthstar Geographics  SIO © 2018 HERE <a style="white-space: nowrap" target="_blank" href="http://www.microsoft.com/maps/product/terms.html">Terms of Use</a>
+               </span>
+            </div>
+         </div>
+      </div>
+      <div id="help_dialog" class="text_dialog">
+         <div style=" background: url(&#39;/pic/IIWQ_2.png&#39;); background-repeat: no-repeat; background-position: 98% 80%; background-size: auto 60%; height: 100%;">
+            <div style="background: rgba(255,255,255,0.1); height: 100%; ">
+               <div id="chart_header">
+                  <img src="./button_chart_close.png" alt="close" id="help_close" class="close_botton">
+                  <div class="clear-fix"></div>
+               </div>
+			   <!-- ---------------------------------------------------------- Nishan First Test Text ---------------------------------------------------------- -->
+               <div class="dialog_wrapper scroll-area">
+                  <div>
+                     <h1>Introduction</h1>
+                     <p>Welcome to UNESCO WaterQualityApp, a free online visualiser for global water quality products of all inland and coastal waters worldwide.</p>
+                     <p>The online platform provides you with water quality based information for all continents including a merged global set of parameters in 90m resolution.
+                        You can also access time series products in 30m sampling resolution, for selected regions in each continent, covering the year 2016.
+                     </p>
+                     <p>This application allows you to interactively browse the water quality products. Use the features on the right hand side to select your region
+                        of interest, select various water quality parameters, set any desired virtual sampling stations, gather values and time series information.
+                        A quick <a href="http://www.eomap.com/exchange/pdf/Userguide_IIWQ_Portal.pdf" target="blank">information guide</a> gives a summary of how to use this portal, see also below.
+                     </p>
+                     <p>To download an information booklet on these products, click  
+                        <a href="http://www.eomap.com/exchange/pdf/UNESCO_Information_Booklet_Water_Quality_Monitoring.pdf" target="blank">Information Booklet Water Quality Monitoring</a><br>
+                     </p>
+                     <p>To download a training handbook covering main practical questions of using satellite based information products, click    
+                        <a href="http://www.eomap.com/exchange/pdf/UNESCO_Training_Handbook.pdf" target="blank">Training handbook</a><br>
+                     </p>
+                     <h1>How to use this Portal</h1>
+                     <p>Basic map tools for interacting with the map are provided on the right hand side of the top bar. Basic map tools include zooming and placing a virtual measuring station. A computer mouse can be used for panning and zooming or alternatively, interact on the touch screen of a mobile device. Virtual stations are created with a tap on the map and map sections can be moved by dragging the fingers across the screen.</p>
+                     <p>The blue function bar includes the following:</p>
+                     <ul>
+                        <p></p>
+                        <li>
+                           <div class="list_image region_icon">
+                              <span>Select regions to explore individual dates and time series in 2016 or full world mosaic layers.</span>
+                           </div>
+                        </li>
+                        <p></p>
+                        <p></p>
+                        <li>
+                           <div class="list_image parameter_icon">
+                              <span>Select water quality parameters (turbidity, chlorophyll-a, the harmfull algae bloom indicator HAB, organic absorption or surface temperature).</span>
+                           </div>
+                        </li>
+                        <p></p>
+                        <!--<p><li>
+                           <div class="list_image period_icon">
+                           	<span>Select for which date or time period you wish to see your selected parameter. Currently you can see three options:</span>
+                                          </div>
+                                          <ul style="list-style-type:circle">
+                                              <li><u>Daily</u>: displays the parameter values  as raster data derived from satellite data according to the sensor 
+                                              specifications, e.g. using Landsat images each pixel has resolution of 30mx30m. Clouds and pixels with bad quality 
+                                              are not visible </li>
+                                              <li>Daily Mean (<u>D&#039;Mean</u>) <br>
+                                              for 30m resolution: mean parameter value of all pixels of a whole waterbody based on OpenStreetMap polygons. 
+                                              Pixels for a minimum of 10% of the waterbody area must be available. <br>
+                                              for 500m resolution: pixelwise mean value of all pixels of one day.                        
+                                              <li>Moving Mean (<u>M&#039;Mean</u>): pixelwise mean of all pixels of the previous 7 days. </li>
+                                              <li><u>Seasonal</u>: average pixelwise parameter values for a fixed time period, e.g. May-September 2014, using all available data</li>
+                                          </ul>                       
+                           </li></p>--> 
+                        <p></p>
+                        <li>
+                           <div class="list_image station_icon">
+                              <span>Once virtual station is set, a parameter value is shown in the value section. If you have selected the World Mosaic layer, you can view also the record date below the parameter value.</span>
+                           </div>
+                        </li>
+                        <p></p>
+                        <p></p>
+                        <li>
+                           <div class="list_image chart_icon">
+                              <span>Generate a time series plot of the selected parameter value at your virtual measuring station. <br> After placing the pin for the virtual measuring station please wait few seconds before clicking the button as the time series data is generated on the fly from the available data layers.</span>
+                           </div>
+                        </li>
+                        <p></p>
+                        <p></p>
+                        <li>
+                           <span>Generate a report including statistical measures for the selected year. Once a parameter is visualized in the time series plot you can find the button for generating the report on the lower right part of the time series plot.</span>
+                        </li>
+                        <p></p>
+                        <p></p>
+                        <li>
+                           <span>The blue function bar can be minimized by clicking on the "&gt;" character on the upper right of the blue panel. This may be of help if you are using mobile devices.</span>
+                        </li>
+                        <p></p>
+                     </ul>
+                     <h1>What this Portal shows</h1>
+                     <p><u>Turbidity:</u> measures the degree to which light is being backscattered by particles in the water. Tracking changes
+                        in turbidity is useful when monitoring sediment plumes from dredging and dumping activities. The measurement unit is 
+                        Earth Observation Turbidity Unit (ETU) and directly related to backscattering of particles, very similar in magnitude to Nephelometric
+                        and Formazine Turbidity Units (NTU and FTU). It is linearly related to Total Suspended Matter (TSM) at low to moderate turbidity values.
+                     </p>
+                     <!--<p><u>Visibility:</u> a measure of the visibility in the water column, and therefore directly related to what a diver 
+                        would experience if underwater at this particular location.</p> -->
+                     <p><u>Chlorophyll-a:</u> Chlorophyll-a is an essential pigment included in phytoplankton cells and therefore a measure of phytoplankton. 
+                        The displayed Chlorophyll-a CHL is calculated from total scattering and total organic absorption of water constituents. Unit is [µg/l]
+                     </p>
+                     <!-- <p><u>Reef Bathymetry:</u> is the depth of the water column. It can also be thought of as an underwater digital 
+                        elevation model of the seafloor. The bathymetry data layer displayed here is taken from EOMAP's world first 
+                        bathymetry map product of the entire Great Barrier Reef at 30 m horizontal resolution (resampled to 500m).</p> -->
+                     <p><u>HAB Indicator:</u> Harmful Algae Blooms (HAB) indicator shows possible areas affected by harmful algae blooms formed by cyanobacteria
+                        containing phycocyanin.
+                     </p>
+                     <p>Please read the information booklet for further information on the water quality products and to learn more about the validity range of the products. Products are generated independent on any form of ground truth data, and inter-comparable over the various resolutions provided. The Chlorophyll and HAB indicator may have site-specific limitations e.g. for extremely humid, calcareous, or ferruginous waters, and can be improved with local adaptations. General restrictions are caused 
+                        by clouds, optical shallow waters, or undetected artefacts from e.g. cloud shadows.
+                     </p>
+                     <br>
+                     <h1>FAQ</h1>
+                     <p>Q: How can I learn more about these satellite-derived map and data water quality products, uncertainties and methodological differences between satellite based and in-situ or laboratory measurements<br>
+                        A: For a first overview, please download our information booklet. For further details on WQ monitoring…please refer to links provided in the booklet.<br>
+                        <a href="http://www.eomap.com/exchange/pdf/EOMAP_Information_Booklet_Water_Quality_Monitoring.pdf" target="blank">Information Booklet Water Quality Monitoring</a><br>
+                        <a href="http://www.eomap.com/exchange/pdf/EOMAP_Validation_Examples_Water_Quality.pdf" target="blank">Validation Examples Water Quality</a>
+                     </p>
+                     <p>Q: I have technical problems using the portal, or wish to access water quality data for other dates or resolutions. Who can help me?<br>
+                        A: Please contact the support team at <a href="mailto:info@worldwaterquality.com">info@worldwaterquality.com</a>, or the support team of EOMAP at <a href="mailto:info@eomap.com">info@eomap.com</a>.
+                     </p>
+                     <p>Q: I am interested in a location outside the polygon areas that you feature here. How can I view water quality maps for my location?<br>
+                        A: In the blue function bar on the right hand side, you can select the full world mosaic layer. As soon as you have set a virtual station, you can see the date of the data record for that point. Or you can select in the same tab other available demo regions with time series data of 2016 in 30m resolution.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="disclaimer_dialog" class="text_dialog">
+         <div id="chart_header">
+            <img src="./button_chart_close.png" alt="close" id="disclaimer_close" class="close_botton">
+            <div class="clear-fix"></div>
+         </div>
+         <div class="dialog_wrapper scroll-area">
+            <div>
+               <h1>Imprint</h1>
+               <p><b>UNESCO</b><br>
+                  7 place Fontenoy<br>
+                  75007 Paris<br>
+                  France<br>            
+                  <br>
+                  phone: +33 (0)1 4568 1000<br>
+                  <a href="http://www.unesco.org/">http://www.unesco.org</a><br>
+                  <br>            
+                  This application is provided by the: <a href="http://en.unesco.org/themes/water-security/hydrology">International Hydrological Programme (IHP)</a>
+               </p>
+               <h1>Disclaimer</h1>
+               <p>The information presented through this interface is provided "as is" and users bear all responsibility and liability for their use of the data. UNESCO does not warrant that the information, documents and materials contained in its website is complete and correct and shall not be liable whatsoever for any damages incurred as a result of its use.</p>
+               <p>  </p>
+               <p>
+                  This website uses Google Analytics, a web analytics service provided by Google, Inc. (“Google”). Google Analytics uses “cookies”, which are text files placed on your computer, to help the website analyze how users use the site. The information generated by the cookie about your use of the website (including your IP address) will be transmitted to and stored by Google on servers in the United States. In case of activation of the IP anonymization, Google will truncate/anonymize the last octet of the IP address for Member States of the European Union as well as for other parties to the Agreement on the European Economic Area. Only in exceptional cases, the full IP address is sent to and shortened by Google servers in the USA. On behalf of the website provider Google will use this information for the purpose of evaluating your use of the website, compiling reports on website activity for website operators and providing other services relating to website activity and internet usage to the website provider. Google will not associate your IP address with any other data held by Google. You may refuse the use of cookies by selecting the appropriate settings on your browser. However, please note that if you do this, you may not be able to use the full functionality of this website. Furthermore you can prevent Google’s collection and use of data (cookies and IP address) by downloading and installing the browser plug-in available under https://tools.google.com/dlpage/gaoptout?hl=en-GB.
+               </p>
+               <p>
+                  You can refuse the use of Google Analytics by clicking on the following link. An opt-out cookie will be set on the computer, which prevents the future collection of your data when visiting this website: <a href="javascript:gaOptout()">Disable Google Analytics</a>
+               </p>
+               <p>
+                  Further information concerning the terms and conditions of use and data privacy can be found at http://www.google.com/analytics/terms/gb.html or at https://www.google.de/intl/en_uk/policies/. Please note that on this website, Google Analytics code is supplemented by “anonymizeIp” to ensure an anonymized collection of IP addresses (so called IP-masking).
+               </p>
+            </div>
+         </div>
+      </div>
+      <div id="regioninfo_dialog" class="text_dialog">
+         <div id="chart_header">
+            <img src="./button_chart_close.png" alt="close" id="regioninfo_close" class="close_botton">
+            <div class="clear-fix"></div>
+         </div>
+         <div class="dialog_wrapper scroll-area">
+            <div>
+               <h1>AM/AZ - Caucasus highlands</h1>
+               <p>One of the largest freshwater high-altitude lakes of Eurasia, Lake Sevan in Armenia at 1900m above sea level, the recently completed Semkir Reservoir in the Caucasus region of Azerbaijan and the associated river systems including the Kur river are covered in this focus region. The waterbodies in this region have been intensively used for irrigation in the past century, resulting in severe ecological impacts for Lake Sevan.</p>
+               <p>The Caucasus region around the Semkir reservoir is characterized by semiarid subtropical steppe climate, mild winters, hot summers and an annual precipitation of 250nm. At Lake Sevan the winters are very cold due to the high-altitude semiarid continental climate, with an slightly higher annual precipitation of 300nm. </p>
+               <h1>AR/BR/PY - Itaipú/Paraná River</h1>
+               <p>Located right at the border of Paraguay and Brazil, the Itaipú dam impounds the Paraná river over a distance of more than 170 km. Until the construction of the Chinese Three Groges Dam, it was the world’s biggest power plant, and in terms of annual energy produced, it still is. Its construction took eight years and did not only have direct impacts on the economy, but also on the ecology and geography of the area. Forest had to be cut down to make room for the gigantic project, thousands of  indigene people were moved and vast areas of rainforest, together with their adjacent waterfalls, were flooded. One of them had been the world’s largest waterfall by volume and had separated the areas above and below him into different ecoregions.After the building of the dam, species, formerly restricted to of these ecoregions, were able to enter the other and caused the typical problems that come with such invasions. On the other hand, the dam produces 75% of Paraguay’s and nearly 20% of Brazil’s energy and is also considered one of the seven modern Wonders of the World. Due to its size, political and economic value and its location within an ecologically precious region, monitoring the state of the river and lake is crucial.</p>
+               <h1>DE - Mecklenburg Lake Plateau</h1>
+               <p>More than 2000 small and few larger lakes cover the MecklenburgischeSeenplatte in Northern Germany. The lakes have formed from a pro-glacial lake during last glacial period.In this target area, a large variety of meso- and eutrophic lakes is included, which are under anthropogenic pressures such as fertilizers from agriculture. An increasing number of Cyanobacteria blooms is of public interest, and currently investigated as possible side effect of global warning. The regular assessment of the ecological status as requested by the European Union’s Water Framework Directive WFDis a challenging task for environmental agencies in states like Mecklenburg-Vorpommern with avery high number of distributed lakes larger than 10ha. Remote Sensing can therefore efficiently support planning and fundamental monitoring tasks - also for smaller lakes which are not covered under the WFD. The climate in Northern Germany is characterized by moderate warm summers and mild cloudy winters, with an annual mean temperature of 10 degrees Celsius and 600mm annual precipitation.</p>
+               <p>The region is well suited as a reference area for extended validation exercises of satellite-derived water quality products, due to the high activity level of several leading environmental research institutions, universities and the water agencies themselves.</p>
+               <h1>EG/SD - Nile &amp; Assuan Reservoir</h1>
+               <p>Lake Nasser in Egypt and its southern end Lake Nubia as called by the Sudanese was created as result of the construction of the Aswan High Dam in Egypt, and fed by the Nile, the world’s longest river. Lake Nasser is one of the largest men-made reservoirs and was constructed to control flooding, provide increased water storage for irrigation, and generate hydroelectricity . It improves the extremely vulnerable food and water security situation in Egypt. Still, the Nile River has a major impact on the interstate politics of the region, as it is the only reliable source for renewable water supplies in the area.  As other dams, sediment trapping is causing changes in downstream water quality, with significant impacts on coastal erosion in the Nile delta , which reversed from growth to a shrinking process since the closing of the dam.For this study, we selected the inflow area of Lake Nasser between Sudan and Egypt, covering the highest sedimentation levels and water quality gradients in the reservoir. </p>
+               <p>The climate conditions are subtropical at the borderline to a tropical arid climate, with extremely dry and hot summers and an annual precipitation of almost 0 mm. The Nile highwater season is in August/September, following the rainfall season in the upstream area in Ethiopia.</p>
+               <h1>KH/VN - Mekong delta</h1>
+               <p>The Mekong delta represents by far Vietnams highest productive aqua- and agriculture environment, and is home for a population of around 17 million people. It is highly vulnerable to several climate change impacts, such as saltwater intrusion caused by sea level rise . Also massive human made disturbances to the river ecosystem from large dams create major threads to the fish and agriculture production, both to Cambodia and Vietnam. Half of the sediments are trapped in a cascade of upstream dams and water diversion schemes, resulting in a significant nutrient reduction and consequent halving of productivity . Satellite based water quality measurements can contribute with independent measurements of turbidity , sediment flows, assessments of the organic components. A sediment analysis for the entire delta and the cascade of upstream dams can quantify not only actual impacts, but also historic changes using satellite data up to 30 years back in time.</p>
+               <p>The Mekong delta has a tropical wet and dry climate within the drainage basin (monsoonal), a high annual precipitation of approx. 1500mm especially during the summer months from May to October, and a relative dry season from November to April.</p>
+               <h1>US - Florida lakes</h1>
+               <p>Located near the eastern shore of central Florida, this area is covered by numerous lakes, from small to vast, with a wide spectrum of characteristics. The climate can be classified as humid subtropical, with an annual precipitation of approx. 1200mm, resulting in warm winters and hot, humid summers. Therefore, the waterbodies and their water quality parameters are highly dynamic and might differ within small areas. While some lakes are very clear, others can become very turbid, sometimes even with high amounts of phytoplankton. Their classification ranges from eutrophic to hyper-eutrophic, with some lakes showing regular and significant blooms of cyanobacteria. Partly, the lakes can be covered by water lilies and surrounded by cattail plants or swamp cypresses. Due to these differences and dynamics, the area is specifically interesting to put water quality algorithms to a test. Additionally, there are large amounts of validation data available, especially from the Lake County Water Authority and the United States Environmental Protection Agency (EPA). Those institutions provide long-term in-situ measurements for a large number of lakes in this region, which makes them well suited for extended validation exercises of satellite-derived water quality products.</p>
+               <h1>ZM/ZW - Zambesi River</h1>
+               <p>Lake Kariba is one of the largest reservoirs worldwide, providing electricity to much of Zambia and Zimbabwe. Lake Kariba is fed by the Zambesi River. The selected area covers the eastern part of Lake Kariba and the Middle Zambesi river between the Lower Zambesi National park and the Mana Pools National park. As other dams, sediment trapping in the Lake Kariba and the subsequent Cahora Bassa dam is causing significant impacts on coastal erosion in the Sambesi delta, which nowadays is only half of its original size. </p>
+               <p>Lake Kariba and the Middle Zambesi river is located in a tropical semiarid climate with an annual precipitation of approx. 800mm, where the significant contributions are during the summer months from November to March. April to October is very dry. </p>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>

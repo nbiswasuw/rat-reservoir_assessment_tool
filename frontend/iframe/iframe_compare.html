@@ -1,0 +1,703 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Reservoir Monitoring</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="img/res.png">
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143541579-1"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-143541579-1');
+		</script>
+
+		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script>
+			function getParamValue(paramName) {
+				var url = window.location.search.substring(1); //get rid of "?" in querystring
+				var qArray = url.split('&'); //get key-value pairs
+				for (var i = 0; i < qArray.length; i++) {
+					var pArr = qArray[i].split('='); //split key and value
+					if (pArr[0] == paramName)
+						return pArr[1]; //return value
+				}
+			}
+			function zfill(num, len) {
+			return (Array(len).join("0") + num).slice(-len);}
+			
+			
+			var station = getParamValue("stationid");
+			var resname = getParamValue("reservoirname");
+			var damname = getParamValue("damname");
+			var river = getParamValue("river");
+		</script>
+
+
+		<!--- Reading Storage Volume Changes --->
+		<script>
+		function inflowdata()
+		{
+			dataset = '';
+			// AJAX in the data file
+			$.ajax({
+				type: "GET",
+				url: "data/inflow/" + station + ".txt",
+				async: false,
+				dataType: "text",
+				success: function(data)
+				{
+				  dataset=String(data);
+				}
+				});
+				return dataset;
+		}
+		
+		function loadinflow()
+		{
+			document.getElementById("btnsarea").className = 'button alt small'
+			document.getElementById("btnaec").className = 'button alt small'
+			document.getElementById("btninflow").className = 'button fit'
+			document.getElementById("btndeltas").className = 'button alt fit'
+			document.getElementById("btnoutflow").className = 'button alt fit'
+			document.getElementById("container").style.color = "#000000";
+			
+			$.ajax({
+			  url: 'data/inflow/' + station + '.txt',
+			  success: function()
+			  {
+			    var inflow = []
+				data = inflowdata();
+				testlines = data.split('\n');
+				for (i = 1; i < testlines.length; i++) {
+				var items = testlines[i].split(',');
+					inflow.push([new Date(items[0]).getTime(), +items[1]]);
+				}
+				
+				Highcharts.setOptions({
+				   global: {
+					  useUTC: false
+				   }
+				});
+
+				var chart = Highcharts.chart('container', {
+				chart: {
+						zoomType: 'x',
+						panning: true,
+						panKey: 'shift',
+						style: {
+							fontFamily: 'serif',
+							fontSize: '12px',
+							color: "#000000"
+						}
+					},
+				title: {
+				  text: "Inflow",
+					style: {
+						font: '20px bold Times New Roman, sans-serif',
+						color: "#000000"
+					}
+				  
+				},
+				subtitle: {
+				  text: "Dam: " + decodeURIComponent(damname) + ", Grand ID: " + station + ", River: " + decodeURIComponent(river),
+					style: {
+						font: '18px Times New Roman, sans-serif',
+						color: "#000000"
+					}
+				},
+				xAxis: {
+				  type: 'datetime',
+				  title: {
+					text: 'Date',
+					style: {
+						font: '16px bold Times New Roman, sans-serif',
+						color: "#000000"
+					}
+				  },
+				  labels: {
+						style: {
+							font: '16px Times New Roman, sans-serif',
+							color: "#000000"
+						}
+				  }
+				},
+				yAxis: {
+				  title: {
+					text: 'Inflow (cumecs)',
+					style: {
+						font: '16px bold Times New Roman, sans-serif',
+						color: "#000000"
+					}
+				  },
+				  labels: {
+					format: '{value:.1f}',
+					style: {
+						font: '16px Times New Roman, sans-serif',
+						color: "#000000"
+					}				
+				  },
+				  minTickInterval: 0.1
+				},
+				tooltip: {
+					xDateFormat: '%d-%m-%Y',
+				  crosshairs: true,
+				  shared: true,
+				  valueDecimals: 1,
+				  valueSuffix: " cumecs"
+				},
+				legend: {},
+				series: [{
+				  name: 'Inflow from Model',
+				  data: inflow,
+				  type: 'spline',
+				  marker: {
+					enabled: false
+				  },
+				  color:'green',
+				  zIndex: 1,
+				  states: {
+					hover: {			
+					  lineWidthPlus: 0
+					}
+				  }
+				}]
+				});			  
+				
+			  },
+			  error: function(){
+			  	document.getElementById("container").innerHTML = "We appreciate your interest on getting information of this reservoir. Unfortunately, inflow into this reservoir have not been calculated. If you are interested about this reservoir, please let us know by sending request through the following form. The system will inform you when the analysis will be completed.</br>"
+				var btn=document.createElement("a");
+				btn.setAttribute("href", "https://forms.gle/MUebn4bheie1b91J7");
+				btn.setAttribute("id", "ticketbtn");
+				btn.setAttribute("class", "button alt small");
+				btn.innerHTML = "Submit a ticket";
+				document.getElementById("container").appendChild(btn);
+			  }
+			});
+
+		}
+
+		function loadoutflow()
+		{
+			document.getElementById("btnsarea").className = 'button alt small'
+			document.getElementById("btnaec").className = 'button alt small'
+			document.getElementById("btninflow").className = 'button fit'
+			document.getElementById("btndeltas").className = 'button alt fit'
+			document.getElementById("btnoutflow").className = 'button fit'
+			document.getElementById("container").innerHTML = "Outflow for this reservoir have not been calculated."
+
+		}
+
+		function l8deltasdata()
+		{
+			dataset = '';
+			// AJAX in the data file
+			$.ajax({
+				type: "GET",
+				url: "data/deltas/l8/" + station + ".txt",
+				async: false,
+				dataType: "text",
+				success: function(data)
+				{
+				  dataset=String(data);
+				}
+				});
+				return dataset;
+		}
+
+		function s1deltasdata()
+		{
+			dataset = '';
+			// AJAX in the data file
+			$.ajax({
+				type: "GET",
+				url: "data/deltas/s1/" + station + ".txt",
+				async: false,
+				dataType: "text",
+				success: function(data)
+				{
+				  dataset=String(data);
+				}
+				});
+				return dataset;
+		}
+
+		function loaddeltas()
+		{
+			document.getElementById("btnsarea").className = 'button alt small'
+			document.getElementById("btnaec").className = 'button alt small'
+			document.getElementById("btninflow").className = 'button alt fit'
+			document.getElementById("btndeltas").className = 'button fit'
+			document.getElementById("btnoutflow").className = 'button alt fit'
+
+			var l8area = [],
+			s1area = []
+
+			l8data = l8deltasdata();
+			lines = l8data.split('\n');
+			for (i = 0; i < lines.length; i++) {
+			var items = lines[i].split(',');
+				l8area.push([new Date(items[0]).getTime(), +items[1]]);
+			}
+			s1data = s1deltasdata();
+			lines = s1data.split('\n');
+			for (i = 0; i < lines.length; i++) {
+			var items = lines[i].split(',');
+				s1area.push([new Date(items[0]).getTime(), +items[1]]);
+			}
+				Highcharts.setOptions({
+				   global: {
+					  useUTC: false
+				   }
+				});
+			var chart = Highcharts.chart('container', {
+			chart: {
+					zoomType: 'x',
+					panning: true,
+					panKey: 'shift',
+					style: {
+						fontFamily: 'serif',
+						fontSize: '12px',
+						color: "#000000"
+					}
+				},
+			title: {
+			  text: "Reservoir Storage Change",
+			  	style: {
+					font: '20px bold Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			  
+			},
+			subtitle: {
+			  text: "Dam: " + decodeURIComponent(damname) + ", Grand ID: " + station + ", River: " + decodeURIComponent(river),
+			  	style: {
+					font: '18px Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			},
+			xAxis: {
+			  type: 'datetime',
+			  title: {
+				text: 'Date',
+				style: {
+					font: '16px bold Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			  },
+			  labels: {
+					style: {
+						font: '16px Times New Roman, sans-serif',
+						color: "#000000"
+					}
+			  }
+			},
+			yAxis: {
+			  title: {
+				text: 'Storage Change (BCM)',
+				style: {
+					font: '16px bold Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			  },
+			  labels: {
+				format: '{value:.3f}',
+				style: {
+					font: '16px Times New Roman, sans-serif',
+					color: "#000000"
+				}				
+			  },
+			  minTickInterval: 0.001
+			},
+			tooltip: {
+				xDateFormat: '%d-%m-%Y',
+			  crosshairs: true,
+			  shared: true,
+			  valueDecimals: 3,
+			  valueSuffix: " BCM"
+			},
+			legend: {},
+			series: [{
+			  name: 'Landsat-8 (MNDWI Method) Based Storage Change',
+			  data: l8area,
+			  type: 'spline',
+			  marker: {
+				enabled: true,
+				radius: 3		
+			  },
+			  color:'green',
+			  zIndex: 1,
+			  states: {
+				hover: {			
+				  lineWidthPlus: 0
+				}
+			  }
+			}]
+			});
+
+		}
+		</script>
+
+		<!--- Reading Water Area Changes --->
+		<script>
+		function l8areadata()
+		{
+			dataset = '';
+			// AJAX in the data file
+			$.ajax({
+				type: "GET",
+				url: "data/sarea/l8/" + station + ".txt",
+				async: false,
+				dataType: "text",
+				success: function(data)
+				{
+				  dataset=String(data);
+				}
+				});
+				return dataset;
+		}
+
+		function s1areadata()
+		{
+			dataset = '';
+			// AJAX in the data file
+			$.ajax({
+				type: "GET",
+				url: "data/sarea/l8/" + station + "_1.txt",
+				async: false,
+				dataType: "text",
+				success: function(data)
+				{
+				  dataset=String(data);
+				}
+				});
+				return dataset;
+		}
+
+		function loadsarea()
+		{
+			document.getElementById("btnsarea").className = 'button small'
+			document.getElementById("btnaec").className = 'button alt small'
+			document.getElementById("btninflow").className = 'button alt fit'
+			document.getElementById("btndeltas").className = 'button alt fit'
+			document.getElementById("btnoutflow").className = 'button alt fit'
+
+			var l8area = [],
+			s1area = []
+
+			l8data = l8areadata();
+			lines = l8data.split('\n');
+			for (i = 1; i < lines.length; i++) {
+			var items = lines[i].split(',');
+				l8area.push([new Date(items[0]).getTime(), +items[2]]);
+			}
+			s1data = s1areadata();
+			lines = s1data.split('\n');
+			for (i = 1; i < lines.length; i++) {
+			var items = lines[i].split(',');
+				s1area.push([new Date(items[0]).getTime(), +items[2]]);
+			}
+				Highcharts.setOptions({
+				   global: {
+					  useUTC: false
+				   }
+				});
+			var chart = Highcharts.chart('container', {
+			chart: {
+					zoomType: 'x',
+					panning: true,
+					panKey: 'shift',
+					style: {
+						fontFamily: 'serif',
+						fontSize: '12px',
+						color: "#000000"
+					}
+				},
+			title: {
+			  text: "Surface Area Variation",
+				style: {
+					font: '20px bold Helvetica, sans-serif',
+					color: "#000000"
+				}
+			},
+			subtitle: {
+			  text: "Dam: " + decodeURIComponent(damname) + ", Grand ID: " + station + ", River: " + decodeURIComponent(river),
+			  	style: {
+					font: '18px Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			},
+			xAxis: {
+			  type: 'datetime',
+			  title: {
+				text: 'Date',
+				style: {
+					font: '16px bold Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			  },
+			  labels: {
+					style: {
+						font: '16px Times New Roman, sans-serif',
+						color: "#000000"
+					}
+			  }
+			},
+			yAxis: {
+			  title: {
+				useHTML: true,
+				enabled: true,
+				text: ' Water Extent Area (Km<sup>2</sup>)',
+				style: {
+					font: '16px bold Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			  },
+			  labels: {
+				format: '{value:.3f}',
+				style: {
+					font: '16px Times New Roman, sans-serif',
+					color: "#000000"
+				}				
+			  },
+			  minTickInterval: 0.001
+			},
+			tooltip: {
+				xDateFormat: '%d-%m-%Y',
+			  crosshairs: true,
+			  shared: true,
+			  valueDecimals: 2,
+			  valueSuffix:  ' Sq. Km.'
+			 
+			},
+			legend: {},
+			series: [{
+			  name: 'Landsat-8 (NDWI Method) Based Area',
+			  data: l8area,
+			  type: 'spline',
+			  marker: {
+				enabled: true,
+				radius: 3		
+			  },
+			  color:'green',
+			  zIndex: 1,
+			  states: {
+				hover: {			
+				  lineWidthPlus: 0
+				}
+			  }
+			},
+			{
+			  name: 'Filtered using GSWD',
+			  data: s1area,
+			  type: 'spline',
+			  marker: {
+				enabled: true,
+				radius: 3		
+			  },
+			  color:'blue',
+			  zIndex: 1,
+			  states: {
+				hover: {			
+				  lineWidthPlus: 0
+				}
+			  }
+			}]
+			});
+
+		}
+		</script>
+
+
+		<!--- Reading Area Elevation Curve--->
+		<script type="text/javascript">
+		 var station = getParamValue("stationid");
+		 var resname = getParamValue("reservoirname");
+		 var river = getParamValue("river");
+
+		function aecdata()
+		{
+			dataset = '';
+			// AJAX in the data file
+			$.ajax({
+				type: "GET",
+				url: "data/aec/" + station + ".txt",
+				async: false,
+				dataType: "text",
+				success: function(data)
+				{
+				  dataset=String(data);
+				}
+				});
+				return dataset;
+		}
+
+		function loadaec()
+		{
+			document.getElementById("btnaec").className = 'button small'
+			document.getElementById("btnsarea").className = 'button alt small'
+			document.getElementById("btninflow").className = 'button alt fit'
+			document.getElementById("btndeltas").className = 'button alt fit'
+			document.getElementById("btnoutflow").className = 'button alt fit'
+			var aec = []
+
+			gfsdata = aecdata();
+			lines = gfsdata.split('\n');
+			for (i = 1; i < lines.length; i++) {
+			var items = lines[i].split(',');
+				aec.push([items[0], +items[1]]);
+			}
+			Highcharts.setOptions({
+			   global: {
+				  useUTC: false
+			   }
+			});
+			var chart = Highcharts.chart('container', {
+			chart: {
+					type: 'spline',
+					zoomType: 'x',
+					panning: true,
+					panKey: 'shift',
+					style: {
+						fontFamily: 'serif',
+						color: "#000000"
+					}
+				},
+			title: {
+			  text: "Area Elevation Curve",
+				style: {
+					font: '20px bold Helvetica, sans-serif',
+					color: "#000000"
+				}
+			},
+			subtitle: {
+			  text: "Dam: " + decodeURIComponent(damname) + ", Grand ID: " + station + ", River: " + decodeURIComponent(river),
+			  	style: {
+					font: '18px Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			},
+			xAxis: {
+			  type: 'category',
+			  title: {
+				text: 'Elevation (m)',
+				style: {
+					font: '16px bold Times New Roman, sans-serif',
+					color: "#000000"
+				}
+			  },
+			  labels: {
+					format: '{value}',
+					style: {
+						font: '16px Times New Roman, sans-serif',
+						color: "#000000"
+					}
+			  },
+			  minTickInterval: 0.01
+			},
+			yAxis: {
+			  title: {
+				useHTML: true,
+				enabled: true,
+				text: 'Area (Km<sup>2</sup>)',
+				style: {
+					font: '16px bold Times, sans-serif',
+					color: "#000000"
+				}
+			  },
+			  labels: {
+				format: '{value:.2f}',
+				style: {
+					font: '16px Times New Roman, sans-serif',
+					color: "#000000"
+				}				
+			  },
+			  minTickInterval: 0.01,
+			  min: 0.0
+			},
+			tooltip: {
+			  crosshairs: true,
+			  shared: true,
+			  valueDecimals: 2,
+			  valueSuffix: ' Sq. Km.'
+			},
+			legend: {},
+			plotOptions: {
+				series: {
+				  turboThreshold: 0 // Comment out this code to display error
+				},
+				area: {
+					fillColor: {
+						linearGradient: {
+							x1: 0,
+							y1: 0,
+							x2: 0,
+							y2: 1
+						},
+						stops: [
+							[0, Highcharts.getOptions().colors[0]],
+							[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+						]
+					},
+					marker: {
+						radius: 2
+					},
+					lineWidth: 1,
+					states: {
+						hover: {
+							lineWidth: 1
+						}
+					},
+					threshold: null
+				}
+			},
+			series: [{
+			  name: 'Area',
+			  data: aec,
+			  type: 'area',
+			  marker: {
+				enabled: true,
+				radius: 3		
+			  },
+			  zIndex: 1,
+			  states: {
+				hover: {			
+				  lineWidthPlus: 0
+				}
+			  }
+			}]
+			});
+
+		}
+		</script>
+	</head>
+	<body onload="loadaec()">
+		<div id="main">
+				<div class="12u$ 12u$">
+					<ul class="actions fit">
+						<li><a href="#" id="btninflow" class="button alt fit" onclick="loadinflow()">Inflow</a></li>
+						<li><a href="#" id="btndeltas" class="button alt fit" onclick="loaddeltas()">Storage Change</a></li>
+						<li><a href="#" id="btnoutflow" class="button alt fit" onclick="loadoutflow()">Outflow</a></li>
+					</ul>
+				</div>
+				<div id="container" style="width: 100%; height: 360px; margin: 0 auto"></div>
+				<div align="right">
+					<ul class="actions">
+						<li><span id="btnaec" class="button alt small" onclick="loadaec()">AEC</span></li>
+						<li><span id="btnsarea" class="button alt small" onclick="loadsarea()">Surface Area</span></li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

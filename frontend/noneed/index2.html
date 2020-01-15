@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Reservoir Assessment Tool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="img/res.png">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+		<link rel="stylesheet" href="https://rawgit.com/socib/Leaflet.TimeDimension/master/dist/leaflet.timedimension.control.min.css"/>
+		<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
+		<link rel="stylesheet" href="css/leaflet.fullscreen.css" />
+		<script src="js/Leaflet.fullscreen.js"></script>
+
+	</head>
+	<body>
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo"><strong>RAT</strong> <span>(Beta) by SASWE</span></a>
+						<nav>
+							<a href="#menu">Menu</a>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="howtouse.html">How to Use</a></li>
+							<li><a href="acknowledgements.html">Acknowledgements</a></li>
+							<li><a href="howtocite.html">How to Cite</a></li>
+							<li><a href="about.html">About Us</a></li>
+							<!---<li><a href="rainfall.html">SASWE Home</a></li>--->
+						</ul>
+						<ul class="actions vertical">
+							<li><a href="http://saswe.net/" class="button special fit">SASWE Home</a></li>
+							<li><a href="http://depts.washington.edu/saswe/" class="button fit">SASWMS</a></li>
+						</ul>
+					</nav>
+
+	<!-- Main -->
+	<div id="main" class="alt">
+		<section id="one">
+			<div id="map" style="width:100%; height:1000px"></div>
+		</section>
+		
+		
+				<!-- Required geojson Layers -->
+		<script src="json/dams_sa_af_seasia.json"></script>
+		<script src="json/sereservoirs.json"></script>
+		<script src="json/majorrivers_sa_af_seasia.json"></script>
+		<script src="js/leaflet-panel-layers.js"></script>
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script src="js/slidercontrol.js"></script>
+		<script src="https://momentjs.com/downloads/moment.min.js"></script>
+		
+		<script>		
+			// Defining static layers
+
+			
+			var rivstyle = {"color": "#4262f4", "weight": 2, "opacity": 0.65};
+			var rivers = L.geoJSON(rivernetwork, {
+				style: rivstyle,
+				onEachFeature: function (feature, layer) {
+				layer.bindTooltip(feature.properties.River + " River");
+				}
+			});
+			
+			
+			var iconOptions = {
+				iconUrl: 'img/reservoir.png',
+				iconSize: [15, 15]
+			 }
+			 // Creating a custom icon
+			 var customIcon = L.icon(iconOptions);
+			 
+			 // Creating Marker Options
+			 var markerOptions = {
+				icon: customIcon
+			 }
+			
+			var stationlocations = L.geoJSON(sedams, {
+				pointToLayer: function (feature, latlng) {
+				return L.marker(latlng, markerOptions);
+            },
+				onEachFeature: function (feature, layer) {
+				var stationid = feature.properties.GRAND_ID;
+				var damname = feature.properties.DAM_NAME;
+				var resname = feature.properties.RES_NAME;
+				var rivername = feature.properties.RIVER;
+				layer.bindTooltip("Dam Name: " + damname + ", Grand ID: " + stationid + ", River: " + rivername);
+				var content = '<iframe id="iframe" width="700" height="520" src="iframe/iframe.html?stationid=&river=&damname=&reservoirname=" frameborder="0"></iframe>';
+				var popupContent = content.replace("stationid=", "stationid=" + stationid).replace("damname=", "damname=" + damname).replace("reservoirname=", "reservoirname=" + resname).replace("river=", "river=" + rivername);
+				layer.bindPopup(popupContent);
+			  }
+			});
+			
+						
+			var Stamen_Terrain = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.{ext}', {
+				attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+				subdomains: 'abcd',
+				minZoom: 0,
+				maxZoom: 18,
+				ext: 'png'
+			});
+			
+			var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+				attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+			});
+			
+			var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+				attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+			});
+			
+			var Esri_NatGeoWorldMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}', {
+				attribution: 'Tiles &copy; Esri &mdash; National Geographic, Esri, DeLorme, NAVTEQ, UNEP-WCMC, USGS, NASA, ESA, METI, NRCAN, GEBCO, NOAA, iPC',
+				maxZoom: 16
+			});
+			var Thunderforest_Landscape = L.tileLayer('https://{s}.tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=33cde94253dc46b0a4945dd1b82ec5c6', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				apikey: '<your apikey>',
+				maxZoom: 22
+			});
+			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			});
+			var transitions = new L.tileLayer("https://storage.googleapis.com/global-surface-water/tiles2018/transitions/{z}/{x}/{y}.png",
+			{ format: "image/png",
+			  maxZoom: 13,
+			  errorTileUrl : "https://storage.googleapis.com/global-surface-water/downloads_ancillary/blank.png",
+			  attribution: "2016 EC JRC/Google" 
+			});
+			
+			var map = L.map('map', {
+				center: [1.293885, 0.536371],
+				zoom: 4,
+				layers: [Esri_WorldStreetMap, rivers, stationlocations],
+				zoomControl: false
+			});
+			
+			var baseLayers = {
+				"Terrain Map":Stamen_Terrain,
+				"Imagery Map":Esri_WorldImagery,
+				"Geo Map":Esri_NatGeoWorldMap,
+				"Landscape Map": Thunderforest_Landscape,
+				"Street Map": Esri_WorldStreetMap,
+				"Google Satellite": googleSat,
+				"Global Water Occurance Map": transitions
+			};
+
+			var overlays = {
+				"Reservoirs": stationlocations,
+				"Major Rivers": rivers
+			};
+
+			L.control.layers(baseLayers,{}, {position: "bottomright"}).addTo(map);
+			L.control.layers({},overlays, {
+				position: 'topright',
+				collapsed: false
+			}).addTo(map);
+			
+			var scale = L.control.scale({
+				position:'bottomleft'
+			}).addTo(map);
+			
+			var elegend = L.control({
+				position: 'topleft'
+			});
+			
+			var drawnItems = L.featureGroup().addTo(map);
+			var drawControl = new L.Control.Draw({
+			 draw: {
+			  circle: false,
+			  rectangle: false,
+			  polyline: false,
+			  polygon: true
+			 },
+			 edit: {featureGroup: drawnItems}
+			}).addTo(map);
+
+			map.on('draw:created', function (event) {
+				var layer = event.layer,
+				  feature = layer.feature = layer.feature || {};
+
+				feature.type = feature.type || "Feature";
+				var props = feature.properties = feature.properties || {};
+				props.desc = null;
+				props.image = null;
+				drawnItems.addLayer(layer);
+				addPopup(layer);
+			});
+
+			function addPopup(layer) {
+			  var content = document.createElement("textarea");
+				content.addEventListener("keyup", function () {
+				  layer.feature.properties.desc = content.value;
+				});
+				layer.on("popupopen", function () {
+				  content.value = layer.feature.properties.desc;
+				  content.focus();
+				});
+				layer.bindPopup(content).openPopup();
+			}
+			function saveIdIW() {
+			  var sName = $('#shapeName').val();
+			  var sDesc = $('#shapeDesc').val();
+			  var drawings = drawnItems.getLayers(); //drawnItems is a container for the drawn objects
+			  drawings[drawings.length - 1].title = sName;
+			  drawings[drawings.length - 1].content = sDesc;
+			  map.closePopup();
+			};
+		</script>
+
+	<!-- Contact -->
+		<section id="contact">
+		</section>
+
+	<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<div class="row">
+					<div class="11u 12u$(medium)">
+						<ul class="copyright">
+							<li><h5>&copy; Developed by Nishan Kumar Biswas of <a href="http://www.saswe.net">SASWE Research Group</a><h5><h5><font color="#858585"><a href="http://www.washington.edu/">University of Washington</a></font></h5></li>
+						</ul>
+					</div>
+					<div class="1u$ 12u$(medium)">
+						<ul class="icons">
+							
+							<li>
+								<a href="http://www.saswe.net" target="_blank"><img src="http://saswe.net/wp-content/themes/saswe/images/satellite.png" height="50" width="50"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

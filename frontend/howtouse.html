@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>How to use RAT</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="Reservoir, Reservoir Monitoring, Real-time Reservoir Monitoring, near-real-time, reservoir mass balance, Reservoir Satellite data, Landsat, Sentinel 1, Sentinel 2, SRTM Dem, Elevation, Reservoir Area-Elevation Curve, Area-Elevation relashionship, RAT Tool, SASWE, SASWE Research Group, University of Washington, Hydrological Modelling, VIC Model, Route Model, Precipitation, IMERG Precipitation, TRMM precipitation, rain, NASA, GPM, TRMM, GFS-FNL, Soil Moisture, Runoff, Baseflow, Evaporation, Precipitation Correction, Streamflow Correction, Web Crawling, In-situ Precipitation, South Asia, South America, Africa, South-East Asia, Water Resources, Nile, Amazon, Mekong, Indus, Ganges, Brahmaputra, Meghna, Pakistan, India, Nepal, Bangladesh" />
+		<meta name="description" content="The Reservoir Assessment Tool (RAT) represents a global and freely accessible system to monitor the operating pattern of world’s current and planned reservoirs and their impact on water availability. RAT is designed to address limitations faced by downstream stakeholders in developing regions of limited access to measurement data and upstream opaque transboundary reservoir policy. It is based on the core SASWE principle that ‘access to information on water is a fundamental right for all humans and nations.’ The development of RAT is always on-going. The developers do not accept any responsibility for wrongful application or faulty decision making based on RAT outputs. Users should read the key documentation on RAT " />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="img/res.png">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"/>
+		<link rel="stylesheet" href="https://rawgit.com/socib/Leaflet.TimeDimension/master/dist/leaflet.timedimension.control.min.css"/>
+		<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+		<script src="js/jquery.min.js"></script>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-155979083-2"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'UA-155979083-2');
+		</script>
+
+		<!-- Default Statcounter code for RAT http://depts.washington.edu/saswe/rat_beta -->
+		<script type="text/javascript">
+		var sc_project=12178575;
+		var sc_invisible=1;
+		var sc_security="360ffba7";
+		</script>
+		<script type="text/javascript"
+		src="https://www.statcounter.com/counter/counter.js"
+		async></script>
+		<noscript><div class="statcounter"><a title="Web Analytics"
+		href="https://statcounter.com/" target="_blank"><img
+		class="statcounter"
+		src="https://c.statcounter.com/12178575/0/360ffba7/1/"
+		alt="Web Analytics"></a></div></noscript>
+		<!-- End of Statcounter Code -->
+
+		<link rel="stylesheet" href="css/leaflet.fullscreen.css" />
+		<script src="js/Leaflet.fullscreen.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+
+			<!-- Header -->
+				<header id="header">
+					<a href="index.html" class="logo">Reservoir Assessment Tool (<strong>RAT</strong> <span>) Beta</span></a>
+					<nav>
+						<a href="#menu">Menu</a>
+					</nav>
+				</header>
+
+			<!-- Menu -->
+					<nav id="menu">
+						<ul class="links">
+							<li><a href="index.html">Home</a></li>
+							<li><a href="about.html" target="_blank">About RAT</a></li>
+							<li><a href="howtouse.html" target="_blank">How to Use RAT</a></li>
+							<li><a href="howtocite.html" target="_blank">How to Cite</a></li>
+							<li><a href="acknowledgements.html" target="_blank">Acknowledgements</a></li>
+						</ul>
+						<ul class="actions vertical">
+							<li><a href="http://saswe.net/" target="_blank" class="button special fit">SASWE Home</a></li>
+							<li><a href="http://depts.washington.edu/saswe/" target="_blank" class="button fit">SASWMS</a></li>
+						</ul>
+					</nav>
+		</div>
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+				<section id="one">
+					<div class="inner">
+						<header class="major">
+							<h1>How to use RAT</h1>
+						</header>
+						<p>The global Reservoir Assessment Tool (RAT) Graphical User Interface consists of 1598 dams over South America, Africa, and South-East Asia. This tool provides reservoir information based on topography, satellite imagery and hydrological model in near-real-time scale. User needs to click on any reservoir icon in the main window to see the following options for key reservoir parameters: “AEC” for Area-Elevation relationship, “Surface Area” for surface water extent area, “Storage Change” for storage change, “Inflow” for reservoir inflow, and “outflow” for reservoir outflow. The area-elevation relationship was derived from SRTM Dem. The surface water extent area of reservoirs was calculated in Google Earth Engine (GEE) by applying Normalized Difference Water Index (NDWI) method on Landsat 8 OLI/TIRS imagery datasets. Storage change was calculated using surface water extent area and area-elevation relationship. Inflow into reservoirs was simulated using meteorological observations (i.e. precipitation, maximum and minimum temperature and wind speed) forced into VIC hydrological model. Reservoir outflow calculated using a mass balance approach from inflow and storage change. Typically, every week all the reservoirs are being updated with the latest available hydrological data and satellite imagery. Users should refer to the <a href="http://depts.washington.edu/saswe/rat_beta/howtocite.html">How to Cite</a> button for the published research this portal is based on.</p>
+					</div>
+				</section>
+
+		</div>
+		
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

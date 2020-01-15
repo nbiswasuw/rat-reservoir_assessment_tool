@@ -1,0 +1,63 @@
+function formatTime (format, time, options) {
+	options = options || {};
+	options = $.extend({}, {
+			amNames: ['AM', 'A'],
+			pmNames: ['PM', 'P'],
+			defaultTimezone: "+0000",
+		}, 
+		options
+	);
+	time = $.extend({
+		hour: time.getUTCHours(),
+		minute: time.getUTCMinutes(),
+		second: 0,
+		millisec: 0,
+		timezone: '+0000'
+	}, time);
+
+	var tmptime = format,
+		ampmName = options.amNames[0],
+		hour = parseInt(time.hour, 10);
+
+	if (hour > 11) {
+		ampmName = options.pmNames[0];
+	}
+
+	tmptime = tmptime.replace(/(?:HH?|hh?|mm?|ss?|[tT]{1,2}|[lz]|('.*?'|".*?"))/g, function(match) {
+	switch (match) {
+		case 'HH':
+			return ('0' + hour).slice(-2);
+		case 'H':
+			return hour;
+		case 'hh':
+			return ('0' + convert24to12(hour)).slice(-2);
+		case 'h':
+			return convert24to12(hour);
+		case 'mm':
+			return ('0' + time.minute).slice(-2);
+		case 'm':
+			return time.minute;
+		case 'ss':
+			return ('0' + time.second).slice(-2);
+		case 's':
+			return time.second;
+		case 'l':
+			return ('00' + time.millisec).slice(-3);
+		case 'z':
+			return time.timezone === null? options.defaultTimezone : time.timezone;
+		case 'T': 
+			return ampmName.charAt(0).toUpperCase();
+		case 'TT': 
+			return ampmName.toUpperCase();
+		case 't':
+			return ampmName.charAt(0).toLowerCase();
+		case 'tt':
+			return ampmName.toLowerCase();
+		default:
+			return match.replace(/\'/g, "") || "'";
+		}
+	});
+
+	tmptime = $.trim(tmptime);
+	return tmptime;
+};
