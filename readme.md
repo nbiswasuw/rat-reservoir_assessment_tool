@@ -4,7 +4,7 @@ This repository is dedicated to use for the Reservoir Assessment Tool (RAT)- A G
 The repository divided into two subdirectories:
 1) Frontend
 2) Backend
-
+User Manual of the framework: http://depts.washington.edu/saswe/rat_beta/RAT_UserManual_V1.01.pdf
 # Frontend
 The main window of the frontend is shown in figure 5 (beta version of the tool hosted at http://depts.washington.edu/saswe/rat_beta/). This frontend was developed from a freely-available template at https://html5up.net/forty and necessary changes made in HTML, CSS and JavaScript code as per the requirements. Currently, 1598 Dams from the GranD Database version 1.3 located in South America, Africa and South-East Asia are modeled operationally for monitoring reservoir dynamics and added to the RAT frontend interface. A major river network was added for user convenience to the GUI. Leaflet API (https://leafletjs.com/) used to visualize geoJSON formatted dam locations and river networks over base-map. Several types of base-maps (i.e., Google Satellite, Global Surface Water Dataset-GSWD) provided in the front-end to visualize administrative boundaries, water extents, and imagery information.  All the reservoir parameters (i.e., AEC curve, surface water extent, inflow, storage change, and outflow) were added to the frontend through an iframe. All of the HTML, CSS and JavaScript code for the iframe were developed from scratch. In figure 6, all of the above components are shown displayed the way they can appear on the RAT GUI.
 
