@@ -40,7 +40,7 @@ Inputs: Outputs from (5) and (6)
 Outputs: Outflow from each fo the reservoirs saved in the directory 'data/outflow'  
 
 # Citation
-The standard citation for this portal and data is “Biswas, N., Hossain, F., Lee, H., Bonnema, M., Chistie, F. (2020) Towards a Global Reservoir Assessment Tool for Predicting Hydrologic Impact and Operating Pattern of Existing and Planned Reservoirs, Environmental Modeling and Software."
+The standard citation for this portal and data is “Biswas, N., Hossain, F., Lee, H., Bonnema, M., Chishtie, F. (2020) Towards a Global Reservoir Assessment Tool for Predicting Hydrologic Impact and Operating Pattern of Existing and Planned Reservoirs, Environmental Modeling and Software."
 # Contact
 Nishan Kumar Biswas (http://staff.washington.edu/nbiswas/ and nbiswas@uw.edu)  
 SASWE Research Group: www.saswe.net
